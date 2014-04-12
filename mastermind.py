@@ -45,6 +45,7 @@ looping_needed = True #enable looping
 while looping_needed:
 
     #print the guess and the number of tries so far
+    print
     print 'Computer Guess #' + str(guess_number) + ': ' + str(guess)
 
     black = 0 #number of black pegs (exact matches)
