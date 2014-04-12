@@ -14,11 +14,15 @@ while looping_needed:
         
     #validate correct letters
     else:
+        x = 0
         for letter in secret:
             if letter not in ['R','O','Y','W','P','B']:
-                print "Oops! Try again."
-            else:
-                looping_needed = False
+                x +=1
+        if x > 0:
+            print "Oops! Try again."
+            print
+        else:
+            looping_needed = False
 
 #create list with all of the possible combinations; leave empty for now
 options_list = []
@@ -54,8 +58,8 @@ while looping_needed:
     checkguess = [guess[0], guess[1], guess[2], guess[3]]
     
     #if the first character in the secret code matches the first character in the guess
-    #then give it one black peg. If not, check to see whether that color matches
-    #the color of any other characters in the guess. Give white peg if it does.
+    #then give it one black peg. Then create temporary guess and secret words to check
+    #whether the guess has the right amount of colors for white pegs.
     if secret[0] == guess[0]:
         black += 1
         checkguess[0] = 'X'
@@ -76,7 +80,8 @@ while looping_needed:
         checkguess[3] = 'X'
         checksecret[3]= 'X'
 
-   
+    #Loop checks to see how many of each color are in temporary guess and secret codes.
+    #If they have the right number of colors, add white peg   
     for letter in ['R','O','Y','W','P','B']:
         i = checksecret.count(letter)
         j = checkguess.count(letter)
@@ -101,8 +106,7 @@ while looping_needed:
         options_list_index = 0 #counter for index in options_list
 
         #this loop changes items in options_list to 'invalid' if they don't equal
-        #the same number of black pegs or at least the same number of white pegs 
-        #as the most recent guess
+        #the same number of black pegs and white pegs. Uses the same logic as above.
         for item in options_list: 
            
             blackcounter = 0
@@ -131,16 +135,16 @@ while looping_needed:
                 checkguess[3] = 'X'
 
             for letter in ['R','O','Y','W','P','B']:
-                i = checkitem.count(letter)
-                j = checkguess.count(letter)
+                i = checkguess.count(letter)
+                j = checkitem.count(letter)
                 if i == 0 or j == 0:
-                    whitecouter = whitecounter
+                    whitecounter = whitecounter
                 elif i == j:
-                    whitecouter += i
+                    whitecounter += i
                 elif i > j:
-                    whitecouter += j
+                    whitecounter += j
                 else:
-                    whitecouter += i        
+                    whitecounter += i      
                 
             if (blackcounter != black) or (whitecounter != white):
                 options_list[options_list_index] = 'Invalid'
