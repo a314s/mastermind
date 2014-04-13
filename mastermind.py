@@ -1,6 +1,8 @@
 #import randint to use later
 import random
 
+colors = ['B','O','P','R','W','Y']
+
 looping_needed = True #enable looping
 while looping_needed:
 
@@ -11,12 +13,13 @@ while looping_needed:
     #validate length    
     if len(secret) != 4:
         print "Oops! Try again."
+        print
         
     #validate correct letters
     else:
         x = 0
         for letter in secret:
-            if letter not in ['R','O','Y','W','P','B']:
+            if letter not in colors:
                 x +=1
         if x > 0:
             print "Oops! Try again."
@@ -27,18 +30,12 @@ while looping_needed:
 #create list with all of the possible combinations; leave empty for now
 options_list = []
 
-#create list with color possibilities to use in the following loop
-spot_one = {1:'B',2:'O',3:'P',4:'R',5:'W',6:'Y'}
-spot_two = {1:'B',2:'O',3:'P',4:'R',5:'W',6:'Y'}
-spot_three = {1:'B',2:'O',3:'P',4:'R',5:'W',6:'Y'}
-spot_four = {1:'B',2:'O',3:'P',4:'R',5:'W',6:'Y'}
-
 #add all possible combinations to options_list
-for spot_one_color in spot_one:
-    for spot_two_color in spot_two:
-        for spot_three_color in spot_three:
-            for spot_four_color in spot_four:
-                new_option = spot_one.get(spot_one_color) + spot_two.get(spot_two_color) + spot_three.get(spot_three_color) + spot_four.get(spot_four_color)
+for spotone in colors:
+    for spottwo in colors:
+        for spotthree in colors:
+            for spotfour in colors:
+                new_option = spotone + spottwo + spotthree + spotfour
 
                 options_list.append(new_option)
                 
@@ -60,31 +57,18 @@ while looping_needed:
     #if the first character in the secret code matches the first character in the guess
     #then give it one black peg. Then create temporary guess and secret words to check
     #whether the guess has the right amount of colors for white pegs.
-    if secret[0] == guess[0]:
-        black += 1
-        checkguess[0] = 'X'
-        checksecret[0]= 'X'
-        
-    if secret[1] == guess[1]:
-        black += 1
-        checkguess[1] = 'X'
-        checksecret[1]= 'X'
-        
-    if secret[2] == guess[2]:
-        black += 1
-        checkguess[2] = 'X'
-        checksecret[2]= 'X'
-        
-    if secret[3] == guess[3]:
-        black += 1
-        checkguess[3] = 'X'
-        checksecret[3]= 'X'
+    
+    for i in [0,1,2,3]:
+        if secret[i] == guess[i]:
+            black += 1
+            checkguess[i] = 'X'
+            checksecret[i]= 'X'
 
     #Loop checks to see how many of each color are in temporary guess and secret codes.
     #If they have the right number of colors, add white peg   
-    for letter in ['R','O','Y','W','P','B']:
-        i = checksecret.count(letter)
-        j = checkguess.count(letter)
+    for color in colors:
+        i = checksecret.count(color)
+        j = checkguess.count(color)
         if i == 0 or j == 0:
             white = white
         elif i == j:
@@ -98,7 +82,7 @@ while looping_needed:
     #print number of black and white pegs received
     print 'Computer receives ' + str(black) + ' black peg(s) and ' + str(white) + ' white peg(s).'
     
-    #print 4 black pegs are received, game over! 
+    #if 4 black pegs are received, game over! 
     if black == 4:
         print "Computer wins in " + str(guess_number) + " tries!"
         looping_needed = False
@@ -114,29 +98,15 @@ while looping_needed:
             checkitem = [item[0], item[1], item[2], item[3]]
             checkguess = [guess[0], guess[1], guess[2], guess[3]]
             
-            if item[0] == guess[0]:
-                blackcounter += 1
-                checkitem[0] = 'X'
-                checkguess[0] = 'X'
-                
-            if item[1] == guess[1]:
-                blackcounter += 1
-                checkitem[1] = 'X'
-                checkguess[1] = 'X'
-                
-            if item[2] == guess[2]:
-                blackcounter += 1
-                checkitem[2] = 'X'
-                checkguess[2] = 'X'
-                
-            if item[3] == guess[3]:
-                blackcounter += 1
-                checkitem[3] = 'X'
-                checkguess[3] = 'X'
+            for i in [0,1,2,3]:
+                if item[i] == guess[i]:
+                    blackcounter += 1
+                    checkitem[i] = 'X'
+                    checkguess[i] = 'X'
 
-            for letter in ['R','O','Y','W','P','B']:
-                i = checkguess.count(letter)
-                j = checkitem.count(letter)
+            for color in colors:
+                i = checkguess.count(color)
+                j = checkitem.count(color)
                 if i == 0 or j == 0:
                     whitecounter = whitecounter
                 elif i == j:
