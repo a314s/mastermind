@@ -14,12 +14,11 @@ Mastermind is a two-player code-breaking game where one player makes a secret co
 I created this program to mimic the game. My program allows the user to create a secret Mastermind code and then the computer guesses the correct code within 10 turns. 
 
 ## <a name="Instructions"></a>How to Play
-
-Fork this repository and clone your repo to your computer.
+This game can only be played in a python console. First, fork this repository and clone your repo to your computer.
 
 ```$ git clone https://github.com/YOUR_GIT_USERNAME_GOES_HERE/mastermind.git```
 
-You can only play this game in your python console. So now, go ahead and play! You should be prompted to select four colors from a set of six possibilities (R, Y, O, P, W, or B) after your enter this in your command line.
+Now, go ahead and play! You will be prompted to select four colors from a set of six possibilities (R, Y, O, P, W, or B) after you enter this in your command line.
 
 ```$ python mastermind.py```
 
