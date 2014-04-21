@@ -1,8 +1,6 @@
-README.md
-
 Mastermind.py
 =========
-----
+
 ## Table of Contents
  
 * [Overview](#Overview)
@@ -19,12 +17,11 @@ I created this program to mimic the game. My program allows the user to create a
 
 Fork this repository and clone your repo to your computer.
 
-```
-$ git clone https://github.com/YOUR_GIT_USERNAME_GOES_HERE/mastermind.git```
+```$ git clone https://github.com/YOUR_GIT_USERNAME_GOES_HERE/mastermind.git```
 
 You can only play this game in your python console. So now, go ahead and play! You should be prompted to select four colors from a set of six possibilities (R, Y, O, P, W, or B) after your enter this in your command line.
-```
-$ c:\> python mastermind.py```
+
+```$ c:\> python mastermind.py```
 
 *Make sure you are in the correct folder before calling 'python mastermind.py'*
  
